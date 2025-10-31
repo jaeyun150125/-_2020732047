@@ -1,22 +1,3 @@
----
-jupyter:
-  colab:
-    authorship_tag: ABX9TyPpAlbZlq4gfTceo7VW0wER
-  kernelspec:
-    display_name: Python 3
-    name: python3
-  language_info:
-    name: python
-  nbformat: 4
-  nbformat_minor: 0
----
-
-::: {.cell .code id="StKRFhPjVRCL"}
-``` python
-```
-:::
-
-::: {.cell .markdown id="JbnizcSUVRw0"}
 # 제어공학1 5-1차시 강의 요약
 
 ## State Variables
@@ -140,59 +121,36 @@ x(t) = Φ(t)x(0) + ∫ Φ(t-τ)Bu(τ)dτ
 
 ------------------------------------------------------------------------
 
-## State Space Equation
+## State Space Equation  
+### <Example 3.1: Two-Cart System>
 
-### \<Example 3.1: Two-Cart System\> {#example-31-two-cart-system}
-
-두 개의 카트 M₁, M₂가 스프링과 감쇠기로 연결되어 있는 시스템이다.\
+두 개의 카트 M₁, M₂가 스프링과 감쇠기로 연결되어 있는 시스템이다.  
 입력 u(t)는 Cart 1에 작용하며, 각각의 변위는 p(t), q(t)로 표현된다.
 
-------------------------------------------------------------------------
 
-### 운동 방정식 (Equations of Motion)
+M₁·p¨(t) = u(t) − b₁[p˙(t) − q˙(t)] − k₁[p(t) − q(t)]  
+M₂·q¨(t) = b₁[p˙(t) − q˙(t)] + k₁[p(t) − q(t)] − b₂q˙(t) − k₂q(t)
 
-M₁·p¨(t) = u(t) - b₁\[p˙(t) - q˙(t)\] - k₁\[p(t) - q(t)\]\
-M₂·q¨(t) = b₁\[p˙(t) - q˙(t)\] + k₁\[p(t) - q(t)\] - b₂q˙(t) - k₂q(t)
 
-------------------------------------------------------------------------
-
-### 상태 변수 정의 (State Variables)
-
-x₁(t) = p(t)\
-x₂(t) = q(t)\
-x₃(t) = p˙(t)\
+x₁(t) = p(t)  
+x₂(t) = q(t)  
+x₃(t) = p˙(t)  
 x₄(t) = q˙(t)
 
-------------------------------------------------------------------------
 
-### 상태 방정식 (State-Space Form)
+ẋ(t) =  
+[ [0, 0, 1, 0],  
+ [0, 0, 0, 1],  
+ [−k₁/M₁,  k₁/M₁, −b₁/M₁,  b₁/M₁],  
+ [ k₁/M₂, −(k₁+k₂)/M₂,  b₁/M₂, −(b₁+b₂)/M₂] ] x(t)  
++ [ [0], [0], [1/M₁], [0] ] u(t)
 
-$$
-\dot{x}(t) =
-\begin{bmatrix}
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 1 \\
--\frac{k_1}{M_1} & \frac{k_1}{M_1} & -\frac{b_1}{M_1} & \frac{b_1}{M_1} \\
-\frac{k_1}{M_2} & -\frac{k_1 + k_2}{M_2} & \frac{b_1}{M_2} & -\frac{b_1 + b_2}{M_2}
-\end{bmatrix}
-x(t)
-+
-\begin{bmatrix}
-0 \\ 0 \\ \frac{1}{M_1} \\ 0
-\end{bmatrix}
-u(t)
-$$
+x(t) = [ x₁(t), x₂(t), x₃(t), x₄(t) ]ᵀ  
+  = [ p(t), q(t), p˙(t), q˙(t) ]ᵀ
 
-$$
-x(t) =
-\begin{bmatrix}
-x_1(t) \\ x_2(t) \\ x_3(t) \\ x_4(t)
-\end{bmatrix}
-=
-\begin{bmatrix}
-p(t) \\ q(t) \\ \dot{p}(t) \\ \dot{q}(t)
-\end{bmatrix}
-$$
+If y(t) = p(t) and u(t) = 0
 
-## If ( y(t) = p(t) ) and ( u(t) = 0 ) {#if--yt--pt--and--ut--0-}
-:::
+y(t) = [ 1  0  0  0 ] x(t)
+
+
+
